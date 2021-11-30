@@ -1,0 +1,71 @@
+body {
+  background: rgb(28, 120, 204);
+  background: linear-gradient(
+    0deg,
+    rgba(28, 120, 204, 1) 10%,
+    rgba(40, 191, 227, 1) 64%,
+    rgba(85, 224, 211, 1) 92%
+  );
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  background: white;
+  border-radius: 7px;
+  width: 300px;
+  height: 200px;
+  font: 100% sans-serif;
+  display: flex;
+}
+
+.boxContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.boxTitle {
+  font: bold 25px sans-serif;
+  padding-top: 7px;
+  padding-bottom: 1px;
+  padding-left: 4px;
+}
+.boxBody {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.boxInput {
+  padding: 8px 15px;
+  border: 2px solid hsl(0, 3%, 77%);
+}
+
+.boxButtonInput {
+  padding: 3px 15px;
+  font-weight: 600;
+  font-size: 25px;
+  color: #ffffff;
+  background-color: #c177fd;
+}
+
+.boxBodyButtonsOrganaizers {
+  display: flex;
+  justify-content: flex-start;
+  padding: 4px 8px;
+}
+
+.buttonOrganiser1 {
+  padding: 4px 8px;
+}
