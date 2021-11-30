@@ -3,6 +3,7 @@
     <meta charset="UTF-8" />
     <script src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
@@ -16,13 +17,27 @@
             <a class="boxButtonInput" >+</a>
           </div>
           <div class="boxBodyButtonsOrganaizers">
-          <a class="boxButtonInput" >+</a>
-          <a class="boxButtonInput" >+</a>
-          <a class="boxButtonInput" >+</a>
+            <a><i class="fas fa-th-list"></i></i></a>
+            <a><i class="fas fa-grip-horizontal"></i></i></a>
+            <a><i class="fas fa-th-large"></i></a>
           </div>
-          <div class="boxBody">
-            <input type="text" name="addNewTodo" placeholder="Add your new todo"></input>
-            <button> </button>
+          <div class="boxBodyList">
+            <table class="boxTableTasks">
+              <tr>
+                <td>
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </td>
+                <td>
+                  <span>Task 1</span>
+                </td>
+            </tr>
+            </table>            
+          </div>
+          <div class="boxFooter">
+            <span>You have 1 task.</span>
+            <a class="boxFooterButton" href="me.html" >Next</a>
+            <a class="boxFooterButton" >Clear All</a>
           </div>
         </div>
       </div>

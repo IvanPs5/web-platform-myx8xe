@@ -19,9 +19,10 @@ body {
   background: white;
   border-radius: 7px;
   width: 300px;
-  height: 200px;
+  height: auto;
   font: 100% sans-serif;
   display: flex;
+  padding: 9px;
 }
 
 .boxContainer {
@@ -37,14 +38,15 @@ body {
   font: bold 25px sans-serif;
   padding-top: 7px;
   padding-bottom: 1px;
-  padding-left: 4px;
 }
 .boxBody {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .boxInput {
@@ -63,9 +65,69 @@ body {
 .boxBodyButtonsOrganaizers {
   display: flex;
   justify-content: flex-start;
-  padding: 4px 8px;
+  column-gap: 5px;
+  padding-left: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
-.buttonOrganiser1 {
-  padding: 4px 8px;
+.boxFooter {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.boxFooter span {
+  font: 80% sans-serif;
+}
+
+.boxFooterButton {
+  padding: 1px 8px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #ffffff;
+  background-color: #c177fd;
+}
+
+.boxBodyList {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.boxTableTasks {
+  background-color: #dfdcdc;
+  width: 100%;
+  padding: 5px 0px;
+}
+
+.boxTableTasks input {
+  background-color: #dfdcdc;
+  width: 100%;
+  padding: 0px;
+}
+
+.boxTableTasks span {
+  background-color: #dfdcdc;
+  font: 83% sans-serif;
+  padding-left: 9px;
+}
+
+.boxList {
+  list-style: none;
+  width: 100%;
+  padding: 0px;
+}
+
+.boxList li {
+  width: 100%;
+  font: 83% sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.boxList li div {
+  width: auto;
+  background-color: #dfdcdc;
+  padding: 8px 15px;
 }

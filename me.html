@@ -1,8 +1,52 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8" />
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
-    <h2>oh whaaa!</h2>
+    <div class="container">
+      <div class="box">
+        <div class="boxContainer">
+          <div class="boxTitle">
+            <span>To Do</span>
+          </div>
+          <div class="boxBody">
+            <input type="text" name="addNewTodo" class="boxInput" placeholder="Add your new todo"></input>
+            <a class="boxButtonInput" >+</a>
+          </div>
+          <div class="boxBodyList">            
+            <ul class="boxList">
+              <li>
+                <div>
+              <span>Buy a new gaming laptop</span>
+            </div>
+              </li> 
+              <li>
+                 <div>
+                   <span>Complete a previous task</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span>Create video for Youtube</span>
+               </div>
+              </li>
+              <li>
+                <div>
+                  <span>Create new portafolio site</span>
+               </div>
+              </li>
+            </ul>
+          </div>
+          <div class="boxFooter">
+            <span>You have 1 pending task.</span>
+            <a class="boxFooterButton" href="index.html" >Next</a>
+            <a class="boxFooterButton" >Clear All</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
