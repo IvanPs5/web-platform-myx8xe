@@ -121,6 +121,9 @@ body {
 
 .boxList li {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font: 83% sans-serif;
   padding-top: 3px;
   padding-bottom: 3px;
