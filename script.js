@@ -20,14 +20,17 @@ $(document).ready(function () {
     textDiv.append(text);
     let buttonDelete = document.createElement('button');
     buttonDelete.className = 'row__hover-button';
+    let iconButton = document.createElement('i');
+    iconButton.className = 'fas fa-trash';
+    buttonDelete.append(iconButton);
     line.append(textDiv);
     line.append(buttonDelete);
     list.append(line);
   });
 
-  $('.list__hover-button').click(function () {
-    let parent = $(this).parent();
-    parent.remove();
+  $('.footer__button').click(function () {
+    let list = $('.todo-component__list');
+    list.empty();
   });
 });
 
