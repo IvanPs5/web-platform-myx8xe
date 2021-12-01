@@ -50,8 +50,10 @@ body {
 }
 
 .boxInput {
-  padding: 8px 15px;
+  padding: 8px 10px;
   border: 2px solid hsl(0, 3%, 77%);
+  width: 232px;
+  height: auto;
 }
 
 .boxButtonInput {
@@ -59,7 +61,7 @@ body {
   font-weight: 600;
   font-size: 25px;
   color: #ffffff;
-  background-color: #c177fd;
+  background-color: #961bfb;
 }
 
 .boxBodyButtonsOrganaizers {
@@ -67,8 +69,8 @@ body {
   justify-content: flex-start;
   column-gap: 5px;
   padding-left: 2px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .boxFooter {
@@ -77,6 +79,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .boxFooter span {
   font: 80% sans-serif;
@@ -87,12 +91,12 @@ body {
   font-weight: 500;
   font-size: 17px;
   color: #ffffff;
-  background-color: #c177fd;
+  background-color: #961bfb;
 }
 
 .boxBodyList {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .boxTableTasks {
