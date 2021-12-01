@@ -52,12 +52,12 @@ body {
 .boxInput {
   padding: 8px 10px;
   border: 2px solid hsl(0, 3%, 77%);
-  width: 232px;
-  height: auto;
+  width: 100%;
 }
 
 .boxButtonInput {
   padding: 3px 15px;
+  width: 5%;
   font-weight: 600;
   font-size: 25px;
   color: #ffffff;
