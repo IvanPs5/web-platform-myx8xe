@@ -39,7 +39,7 @@ body {
   padding-top: 7px;
   padding-bottom: 1px;
 }
-.boxBody {
+.boxBodyInput {
   width: 100%;
   height: 100%;
   display: flex;
