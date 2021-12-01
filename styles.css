@@ -129,8 +129,14 @@ body {
   padding-bottom: 3px;
 }
 
-.boxList li div {
-  width: auto;
+.listTextLane {
+  width: 100%;
   background-color: #dfdcdc;
   padding: 8px 15px;
+}
+
+.listButtonDelete {
+  width: 5%;
+  padding: 8px 15px;
+  background-color: #f32727;
 }
