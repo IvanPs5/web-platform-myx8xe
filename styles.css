@@ -95,8 +95,8 @@ body {
 }
 
 .boxBodyList {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .boxTableTasks {
@@ -121,6 +121,8 @@ body {
   list-style: none;
   width: 100%;
   padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .boxList li {
@@ -130,7 +132,6 @@ body {
   justify-content: space-between;
   font: 83% sans-serif;
   padding-top: 3px;
-  padding-bottom: 3px;
 }
 
 .listTextLane {
