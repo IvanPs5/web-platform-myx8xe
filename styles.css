@@ -1,5 +1,14 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 * {
-  font: inherit;
+  font: sans-serif;
 }
 
 body {
@@ -10,7 +19,7 @@ body {
     rgba(40, 191, 227, 1) 64%,
     rgba(85, 224, 211, 1) 92%
   );
-  font: 16px sans-serif;
+  font: 16px;
   min-width: 320px;
 }
 
@@ -30,7 +39,7 @@ body {
   background: white;
 }
 
-.todo-component .todo-component__content {
+.todo-component__content {
   display: flex;
   width: 100%;
   height: 100%;
@@ -44,7 +53,7 @@ body {
   padding-bottom: 1px;
   font: bold 25px sans-serif;
 }
-.todo-component_input {
+.todo-component__addon {
   display: flex;
   width: 100%;
   height: 100%;
@@ -54,23 +63,24 @@ body {
   justify-content: space-between;
 }
 
-.boxInput {
+.addon__input {
   width: 100%;
   padding: 8px 10px;
   border: 2px solid hsl(0, 3%, 77%);
   font-size: 14px;
 }
 
-.boxButtonInput {
-  width: 5%;
-  padding: 3px 15px;
+.addon__button {
+  width: 15%;
+  padding: 1px 0px;
   font-weight: 600;
   font-size: 25px;
   color: #ffffff;
   background-color: #961bfb;
+  border: 2px solid #961bfb;
 }
 
-.boxBodyButtonsOrganaizers {
+.todo-component__buttons-organaizers {
   display: flex;
   padding-left: 2px;
   padding-top: 7px;
@@ -79,7 +89,7 @@ body {
   justify-content: flex-start;
 }
 
-.boxFooter {
+.todo-component__footer {
   display: flex;
   width: 100%;
   height: 100%;
@@ -89,24 +99,20 @@ body {
   justify-content: space-between;
 }
 
-.boxFooter span {
+.footer__span {
   font: 80% sans-serif;
 }
 
-.boxFooterButton {
+.footer__button {
   padding: 5px 8px;
   font-weight: 500;
   font-size: 13px;
   color: #ffffff;
   background-color: #961bfb;
+  border: 2px solid #961bfb;
 }
 
-.boxBodyList {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.boxList {
+.todo-component__list {
   width: 100%;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -114,7 +120,7 @@ body {
   list-style: none;
 }
 
-.boxList li {
+.list__line {
   display: flex;
   width: 100%;
   padding-top: 3px;
@@ -122,16 +128,25 @@ body {
   justify-content: space-between;
   font: 83% sans-serif;
 }
+.list__line:hover > .list__hover-button {
+  display: flex;
+}
 
-.listTextLane {
+.list__text {
+  display: flex;
   width: 100%;
-  padding: 8px 15px;
+  padding: 8px 7px;
+  column-gap: 5px;
+  align-items: center;
   background-color: #dfdcdc;
 }
 
-.listButtonDelete {
-  width: 5%;
-  padding: 8px 11px;
+.list__hover-button {
+  display: none;
+  width: 15%;
+  height: 100%;
+  padding: 8.5px 11px;
   background-color: #f32727;
   color: #ffffff;
+  border: 2px solid #f32727;
 }

@@ -13,51 +13,60 @@
           <div class="todo-component__title">
             <span>To Do</span>
           </div>
-          <div class="todo-component_input">
-            <input type="text" name="addNewTodo" class="boxInput" placeholder="Add your new todo"></input>
-            <a class="boxButtonInput" >+</a>
+          <div class="todo-component__addon">
+            <input type="text" name="addNewTodo" class="addon__input" placeholder="Add your new todo"></input>
+            <button class="addon__button" >+</button>
           </div>
-          <div class="boxBodyButtonsOrganaizers">
+          <div class="todo-component__buttons-organaizers">
             <a><i class="fas fa-th-list"></i></i></a>
             <a><i class="fas fa-grip-horizontal"></i></i></a>
             <a><i class="fas fa-th-large"></i></a>
           </div>
           <div class="boxBodyList">            
-            <ul class="boxList">
-              <li>
-                <div class="listTextLane">
+            <ul class="todo-component__list">
+              <li class="list__line">
+                <div class="list__text">
+                  <input type="checkbox" class="list__checkbox"/>
                   <span>Buy a new gaming laptop</span>
                 </div>
+                <button class="list__hover-button"><i class="fas fa-trash"></i></button>
               </li> 
-              <li>
-                 <div class="listTextLane">
+              <li class="list__line">
+                 <div class="list__text">
+                  <input type="checkbox" class="list__checkbox"/>
                    <span>Complete a previous task</span>                   
                 </div>
-                <div class="listButtonDelete">
-                  <a><i class="fas fa-trash"></i></a>
-                </div>
+                <button class="list__hover-button"><i class="fas fa-trash"></i></button>
               </li>
-              <li>
-                <div class="listTextLane">
+              <li class="list__line">                
+                <div class="list__text">
+                  <input type="checkbox" class="list__checkbox"/>
                   <span>Create video for Youtube</span>
                </div>
+                <button class="list__hover-button"><i class="fas fa-trash"></i></button>
               </li>
-              <li>
-                <div class="listTextLane">
+              <li class="list__line">                
+                <div class="list__text">
+                  <input type="checkbox" class="list__checkbox"/>
                   <span>Create new portafolio site</span>
-               </div>
+               </div>               
+                <button class="list__hover-button"><i class="fas fa-trash"></i></button>
               </li>
             </ul>
           </div>
-          <div class="boxFooter">
-            <span>You have 4 pending task.</span>
+          <div class="todo-component__footer">
+            <span class="footer__span">You have 4 pending task.</span>
             <!-- <a class="boxFooterButton" href="index.html" >Next</a> -->
-            <a class="boxFooterButton" >Clear All</a>
+            <button class="footer__button" >Clear All</button>
           </div>
         </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
+
+    <script>
+      
+    </script>
   </body>
 </html>
