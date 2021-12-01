@@ -79,7 +79,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 5px;
+  padding-top: 15px;
   padding-bottom: 5px;
 }
 .boxFooter span {
@@ -87,9 +87,9 @@ body {
 }
 
 .boxFooterButton {
-  padding: 1px 8px;
+  padding: 5px 8px;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 13px;
   color: #ffffff;
   background-color: #961bfb;
 }
