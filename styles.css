@@ -1,3 +1,7 @@
+* {
+  font: inherit;
+}
+
 body {
   background: rgb(28, 120, 204);
   background: linear-gradient(
@@ -6,58 +10,60 @@ body {
     rgba(40, 191, 227, 1) 64%,
     rgba(85, 224, 211, 1) 92%
   );
+  font: 16px sans-serif;
+  min-width: 320px;
 }
 
 .container {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .box {
-  background: white;
-  border-radius: 7px;
+  display: flex;
   width: 300px;
   height: auto;
-  font: 100% sans-serif;
-  display: flex;
   padding: 9px;
+  border-radius: 7px;
+  background: white;
 }
 
 .boxContainer {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
   padding-left: 10px;
   padding-right: 10px;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 .boxTitle {
-  font: bold 25px sans-serif;
   padding-top: 7px;
   padding-bottom: 1px;
+  font: bold 25px sans-serif;
 }
 .boxBodyInput {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-top: 3px;
   padding-bottom: 3px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .boxInput {
+  width: 100%;
   padding: 8px 10px;
   border: 2px solid hsl(0, 3%, 77%);
-  width: 100%;
 }
 
 .boxButtonInput {
-  padding: 3px 15px;
   width: 5%;
+  padding: 3px 15px;
   font-weight: 600;
   font-size: 25px;
   color: #ffffff;
@@ -66,22 +72,23 @@ body {
 
 .boxBodyButtonsOrganaizers {
   display: flex;
-  justify-content: flex-start;
-  column-gap: 5px;
   padding-left: 2px;
   padding-top: 7px;
   padding-bottom: 7px;
+  column-gap: 5px;
+  justify-content: flex-start;
 }
 
 .boxFooter {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-top: 15px;
   padding-bottom: 5px;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .boxFooter span {
   font: 80% sans-serif;
 }
@@ -100,26 +107,26 @@ body {
 }
 
 .boxList {
-  list-style: none;
   width: 100%;
-  padding: 0px;
   margin-top: 0px;
   margin-bottom: 0px;
+  padding: 0px;
+  list-style: none;
 }
 
 .boxList li {
-  width: 100%;
   display: flex;
+  width: 100%;
+  padding-top: 3px;
   align-items: center;
   justify-content: space-between;
   font: 83% sans-serif;
-  padding-top: 3px;
 }
 
 .listTextLane {
   width: 100%;
-  background-color: #dfdcdc;
   padding: 8px 15px;
+  background-color: #dfdcdc;
 }
 
 .listButtonDelete {
