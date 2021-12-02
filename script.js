@@ -1,57 +1,90 @@
 $(document).ready(function () {
-  $(document).on('click', '.todo-component__button--delete', function () {
-    let parent = $(this).parent();
-    parent.remove();
-    updateFooterText();
+  $(document).on('click', '.btn.btn--large-delete', function () {
+    removeListRow();
   });
 
-  $('.todo-component__button--add').click(function () {
-    let list = $('.todo-component__list');
-    let line = document.createElement('li');
-    line.className = 'todo-component__list-row';
-    let textDiv = document.createElement('div');
-    textDiv.className = 'todo-component__list-row-text';
-    let checkbox = document.createElement('input');
-    let text = document.createElement('span');
-    checkbox.type = 'checkbox';
-    checkbox.className = 'todo-component__checkbox';
-    let inputText = $('#add-new-todo').val();
-    text.innerHTML = inputText;
-    text.className = 'todo-component__text';
-    textDiv.append(checkbox);
-    textDiv.append(text);
-    let buttonDelete = document.createElement('button');
-    buttonDelete.className =
-      'todo-component__button todo-component__button--delete';
-    let iconButton = document.createElement('i');
-    iconButton.className = 'fas fa-trash';
-    buttonDelete.append(iconButton);
-    line.append(textDiv);
-    line.append(buttonDelete);
-    list.append(line);
+  $('.btn.btn--large-add').click(function () {
+    createListRow();
     updateFooterText();
   });
 
   $('#clear-button').click(function () {
-    let list = $('.todo-component__list');
-    list.empty();
+    clearList();
+  });
+
+  $(document).on('click', '.todo-component__checkbox', function () {
     updateFooterText();
   });
 
-  function updateFooterText() {
-    let sizeList =
-      $('.todo-component__list').children().length -
-      howManyCheckboxAreChecked();
-    let footerText;
-    if (sizeList === 1) {
-      footerText = 'You have ' + sizeList + ' pending task.';
-    } else {
-      footerText = 'You have ' + sizeList + ' pending tasks.';
-    }
-    document.getElementById('text_pending_task').innerHTML = footerText;
+  $('#button-show-all-tasks').click(function () {
+    showTasks('all');
+  });
+
+  $('#button-show-completed-tasks').click(function () {
+    showTasks('completed');
+  });
+
+  $('#button-show-pending-tasks').click(function () {
+    showTasks('pending');
+  });
+
+  function removeListRow() {
+    let parent = $(this).parent();
+    parent.remove();
+    updateFooterText();
+  }
+  function createListRow() {
+    let list = $('.todo-component__list');
+
+    let line = document.createElement('li');
+    line.className = 'todo-component__list-row';
+
+    let textDiv = document.createElement('div');
+    textDiv.className = 'todo-component__list-row-text';
+
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'todo-component__checkbox';
+    let checkboxValue = 'g';
+    checkbox.value = checkboxValue;
+
+    let text = document.createElement('label');
+    text.innerHTML = $('#add-new-todo').val();
+    text.className = 'todo-component__text';
+    text.htmlFor = checkboxValue;
+
+    textDiv.append(checkbox);
+    textDiv.append(text);
+
+    let buttonDelete = document.createElement('button');
+    buttonDelete.className = 'btn btn--large-delete';
+
+    let iconButton = document.createElement('i');
+    iconButton.className = 'fas fa-trash';
+
+    buttonDelete.append(iconButton);
+    line.append(textDiv);
+    line.append(buttonDelete);
+    list.append(line);
   }
 
-  function howManyCheckboxAreChecked() {
+  function clearList() {
+    let list = $('.todo-component__list');
+    list.empty();
+    updateFooterText();
+  }
+
+  function updateFooterText() {
+    let sizeList =
+      $('.todo-component__list').children().length - calculateCheckboxChecked();
+    let footerText = 'You have ' + sizeList + ' pending tasks.';
+    if (sizeList === 1) {
+      footerText = 'You have ' + sizeList + ' pending task.';
+    }
+    $('#text_pending_task').text(footerText);
+  }
+
+  function calculateCheckboxChecked() {
     let checkboxesChecked = 0;
     $('.todo-component__checkbox:checked').each(function () {
       checkboxesChecked++;
@@ -59,34 +92,20 @@ $(document).ready(function () {
     return checkboxesChecked;
   }
 
-  $(document).on('click', '.todo-component__checkbox', function () {
-    updateFooterText();
-  });
+  function showTasks(target) {
+    var checkboxTarget = '.todo-component__checkbox';
+    var isCompleted = target === 'completed';
+    var isPending = target === 'pending';
 
-  $('#button-show-all-tasks').click(function () {
-    showAllTasks();
-  });
-  function showAllTasks() {
-    $('.todo-component__checkbox').each(function () {
+    $(checkboxTarget).each(function () {
       let task = $(this).parent().parent();
       task.show();
-    });
-  }
-  $('#button-show-completed-tasks').click(function () {
-    showAllTasks();
-    $('.todo-component__checkbox').each(function () {
-      if (!$(this).prop('checked')) {
-        let taskPending = $(this).parent().parent();
-        taskPending.hide();
+      if (isCompleted && $(this).prop('checked')) {
+        return true;
+      }
+      if (isCompleted || (isPending && $(this).prop('checked'))) {
+        task.hide();
       }
     });
-  });
-
-  $('#button-show-pending-tasks').click(function () {
-    showAllTasks();
-    $('.todo-component__checkbox:checked').each(function () {
-      let taskCompleted = $(this).parent().parent();
-      taskCompleted.hide();
-    });
-  });
+  }
 });

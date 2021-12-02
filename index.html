@@ -7,23 +7,25 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
-    <div class="container">
+    <div class="one-column-centered-layout">
       <div class="todo-component">
-        <div class="todo-component__content">
+        <div class="todo-component__header">
           <div class="todo-component__title">
             <span>To Do</span>
           </div>
-          <div class="todo-component__addon">
-            <input type="text" id="add-new-todo" class="todo-component__input" placeholder="Add your new todo"/>
-            <button class="todo-component__button todo-component__button--add" >+</button>
-          </div>
-          <div class="todo-component__buttons-organaizers">
-            <button class="todo-component__button todo-component__button--organaizer" id="button-show-all-tasks"><i class="fas fa-th-list"></i></i></button>
-            <button class="todo-component__button todo-component__button--organaizer" id="button-show-completed-tasks"><i class="fas fa-tasks"></i></i></button>
-            <button class="todo-component__button todo-component__button--organaizer" id="button-show-pending-tasks"><i class="fas fa-list"></i></button>
+        </div>
+        <div class="todo-component__input-area">
+          <input type="text" id="add-new-todo" class="todo-component__input" placeholder="Add your new todo"/>
+          <button class="btn btn--large-add" >+</button>
+        </div>
+        <div class="todo-component__info-area">
+          <div class="todo-component__buttons-organizers">
+            <button class="btn btn--organizer" id="button-show-all-tasks"><i class="fas fa-th-list"></i></i></button>
+            <button class="btn btn--organizer" id="button-show-completed-tasks"><i class="fas fa-tasks"></i></i></button>
+            <button class="btn btn--organizer" id="button-show-pending-tasks"><i class="fas fa-list"></i></button>
           </div>           
           <ul class="todo-component__list">
-             <!-- 
+            <!-- 
               <li class="todo-component__list-row">
                 <div class="todo-component__list-row-text">
                   <input type="checkbox" class="todo-component__checkbox"/>
@@ -33,11 +35,11 @@
               </li> 
               -->
           </ul>
-          <div class="todo-component__footer">
-            <span class="todo-component__text" id="text_pending_task">You have 0 pending tasks.</span>
-            <!-- <a class="boxFooterButton" href="index.html" >Next</a> -->
-            <button class="todo-component__button" id="clear-button">Clear All</button>
-          </div>
+        </div>
+        <div class="todo-component__footer">
+          <span class="todo-component__text" id="text_pending_task">You have 0 pending tasks.</span>
+          <!-- <a class="boxFooterButton" href="index.html" >Next</a> -->
+          <button class="btn" id="clear-button">Clear All</button>
         </div>
       </div>
     </div>
