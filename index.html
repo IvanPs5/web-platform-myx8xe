@@ -14,8 +14,8 @@
             <span>To Do</span>
           </div>
           <div class="todo-component__addon">
-            <input type="text" id="addNewTodo" class="addon__input" placeholder="Add your new todo"/>
-            <button class="addon__button" >+</button>
+            <input type="text" id="add-new-todo" class="todo-component__input" placeholder="Add your new todo"/>
+            <button class="todo-component__button todo-component__button--add" >+</button>
           </div>
           <div class="todo-component__buttons-organaizers">
             <a><i class="fas fa-th-list"></i></i></a>
@@ -23,39 +23,20 @@
             <a><i class="fas fa-th-large"></i></a>
           </div>           
           <ul class="todo-component__list">
-              <li class="list__row">
-                <div class="row__text">
-                  <input type="checkbox" class="text__checkbox"/>
+             <!-- 
+              <li class="todo-component__list-row">
+                <div class="todo-component__list-row-text">
+                  <input type="checkbox" class="todo-component__checkbox"/>
                   <span>Buy a new gaming laptop</span>
                 </div>
-                <button class="row__hover-button"><i class="fas fa-trash"></i></button>
+                <button class="todo-component__button todo-component__button--delete"><i class="fas fa-trash"></i></button>
               </li> 
-              <li class="list__row">
-                 <div class="row__text">
-                  <input type="checkbox" class="text__checkbox"/>
-                  <span>Complete a previous task</span>                   
-                </div>
-                <button class="row__hover-button"><i class="fas fa-trash"></i></button>
-              </li>
-              <li class="list__row">                
-                <div class="row__text">
-                  <input type="checkbox" class="text__checkbox"/>
-                  <span>Create video for Youtube</span>
-               </div>
-                <button class="row__hover-button"><i class="fas fa-trash"></i></button>
-              </li>
-              <li class="list__row">                
-                <div class="row__text">
-                  <input type="checkbox" class="text__checkbox"/>
-                  <span>Create new portafolio site</span>
-               </div>               
-                <button class="row__hover-button"><i class="fas fa-trash"></i></button>
-              </li>
+              -->
           </ul>
           <div class="todo-component__footer">
-            <span class="footer__span">You have 4 pending task.</span>
+            <span class="todo-component__text" id="text_pending_task">You have 0 pending tasks.</span>
             <!-- <a class="boxFooterButton" href="index.html" >Next</a> -->
-            <button class="footer__button" >Clear All</button>
+            <button class="todo-component__button todo-component__button--clear" >Clear All</button>
           </div>
         </div>
       </div>
