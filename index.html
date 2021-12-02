@@ -18,9 +18,9 @@
             <button class="todo-component__button todo-component__button--add" >+</button>
           </div>
           <div class="todo-component__buttons-organaizers">
-            <a><i class="fas fa-th-list"></i></i></a>
-            <a><i class="fas fa-grip-horizontal"></i></i></a>
-            <a><i class="fas fa-th-large"></i></a>
+            <button class="todo-component__button todo-component__button--organaizer" id="button-show-all-tasks"><i class="fas fa-th-list"></i></i></button>
+            <button class="todo-component__button todo-component__button--organaizer" id="button-show-completed-tasks"><i class="fas fa-tasks"></i></i></button>
+            <button class="todo-component__button todo-component__button--organaizer" id="button-show-pending-tasks"><i class="fas fa-list"></i></button>
           </div>           
           <ul class="todo-component__list">
              <!-- 
@@ -36,7 +36,7 @@
           <div class="todo-component__footer">
             <span class="todo-component__text" id="text_pending_task">You have 0 pending tasks.</span>
             <!-- <a class="boxFooterButton" href="index.html" >Next</a> -->
-            <button class="todo-component__button todo-component__button--clear" >Clear All</button>
+            <button class="todo-component__button" id="clear-button">Clear All</button>
           </div>
         </div>
       </div>

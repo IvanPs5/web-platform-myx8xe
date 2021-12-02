@@ -138,6 +138,14 @@ body {
   font-size: 25px;
 }
 
+.todo-component__button--organaizer {
+  width: 10%;
+  padding: 0px 0px;
+  font-size: 15px;
+  color: #000000;
+  background-color: #ffffff;
+  border: none;
+}
 .todo-component__button--delete {
   display: none;
   width: 15%;
