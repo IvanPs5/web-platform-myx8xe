@@ -109,9 +109,24 @@ body {
   width: 100%;
   padding: 8px 7px;
   column-gap: 5px;
+  cursor: hand;
   align-items: center;
   background-color: #dfdcdc;
   font-size: 14px;
+}
+
+.todo-component .todo-component__buttons-organizers {
+  padding: 2px 0;
+}
+.todo-component .todo-component__list-buttons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-component .todo-component__list-buttons-row {
+  float: left;
+  padding-right: 12px;
 }
 
 .btn {
@@ -136,7 +151,7 @@ body {
   border: 2px solid #f32727;
 }
 
-.btn.btn--organizer {
+.btn.btn--small-organizer {
   width: 10%;
   padding: 0;
   font-size: 15px;

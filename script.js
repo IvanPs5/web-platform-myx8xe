@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  $(document).on('click', '.btn.btn--large-delete', function () {
-    removeListRow();
+  $('.todo-component__list').on('click', '.btn--large-delete', function () {
+    removeListRow($(this).parent());
+    updateFooterText();
   });
 
   $('.btn.btn--large-add').click(function () {
@@ -10,11 +11,17 @@ $(document).ready(function () {
 
   $('#clear-button').click(function () {
     clearList();
-  });
-
-  $(document).on('click', '.todo-component__checkbox', function () {
     updateFooterText();
   });
+
+  $('.todo-component__list').on(
+    'click',
+    '.todo-component__checkbox',
+    function () {
+      activateCheckbox($(this));
+      updateFooterText();
+    }
+  );
 
   $('#button-show-all-tasks').click(function () {
     showTasks('all');
@@ -28,50 +35,53 @@ $(document).ready(function () {
     showTasks('pending');
   });
 
-  function removeListRow() {
-    let parent = $(this).parent();
-    parent.remove();
-    updateFooterText();
+  $('.todo-component__list').on(
+    'click',
+    '.todo-component__list-row-text',
+    function () {
+      activateCheckbox($(this).find('input'));
+      updateFooterText();
+    }
+  );
+
+  function activateCheckbox(checkbox) {
+    let valueChecked = true;
+    if (checkbox.prop('checked')) {
+      valueChecked = false;
+    }
+    checkbox.prop('checked', valueChecked);
+  }
+
+  function removeListRow(element) {
+    element.remove();
   }
   function createListRow() {
     let list = $('.todo-component__list');
 
-    let line = document.createElement('li');
-    line.className = 'todo-component__list-row';
+    let row = $('<li>').attr('class', 'todo-component__list-row');
 
-    let textDiv = document.createElement('div');
-    textDiv.className = 'todo-component__list-row-text';
-
-    let checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.className = 'todo-component__checkbox';
-    let checkboxValue = 'g';
-    checkbox.value = checkboxValue;
-
-    let text = document.createElement('label');
-    text.innerHTML = $('#add-new-todo').val();
-    text.className = 'todo-component__text';
-    text.htmlFor = checkboxValue;
-
+    let textDiv = $('<div>').attr('class', 'todo-component__list-row-text');
+    let checkbox = $('<input>')
+      .attr('class', 'todo-component__checkbox')
+      .attr('type', 'checkbox');
+    let text = $('<label>')
+      .attr('class', 'todo-component__text')
+      .text($('#add-new-todo').val());
     textDiv.append(checkbox);
     textDiv.append(text);
 
-    let buttonDelete = document.createElement('button');
-    buttonDelete.className = 'btn btn--large-delete';
-
-    let iconButton = document.createElement('i');
-    iconButton.className = 'fas fa-trash';
-
+    let buttonDelete = $('<button>').attr('class', 'btn btn--large-delete');
+    let iconButton = $('<i>').attr('class', 'fas fa-trash');
     buttonDelete.append(iconButton);
-    line.append(textDiv);
-    line.append(buttonDelete);
-    list.append(line);
+
+    row.append(textDiv);
+    row.append(buttonDelete);
+    list.append(row);
   }
 
   function clearList() {
     let list = $('.todo-component__list');
     list.empty();
-    updateFooterText();
   }
 
   function updateFooterText() {
