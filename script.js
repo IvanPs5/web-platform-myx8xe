@@ -10,16 +10,8 @@ $(document).ready(function () {
   });
 
   $('.list_button').click(function () {
-    console.log($(this).attr('class').val());
-    showTasks('all');
-  });
-
-  $('.list_button').click(function () {
-    showTasks('completed');
-  });
-
-  $('list_button').click(function () {
-    showTasks('pending');
+    let action = $(this).find('i')[0];
+    showTasks($(action).attr('class'));
   });
 
   $('.btn--large-delete').on('click', function () {
@@ -95,11 +87,11 @@ $(document).ready(function () {
   }
 
   function showTasks(target) {
-    let isCompletedTasks = target === 'completed';
-    let isPendingTasks = target === 'pending';
+    let isCompletedTasks = target === 'fas fa-tasks';
+    let isPendingTasks = target === 'fas fa-list';
 
     $('.todo-component__checkbox').each(function () {
-      let task = $(this).parent().parent();
+      let task = $(this).parent().parent().parent();
       task.show();
       if (isCompletedTasks && $(this).prop('checked')) {
         return true;
