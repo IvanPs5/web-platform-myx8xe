@@ -45,6 +45,10 @@ body {
   font-size: 25px;
 }
 
+.todo-component__title h3 {
+  margin: 0;
+}
+
 .todo-component .todo-component__input-area {
   display: flex;
   padding-top: 3px;
@@ -77,6 +81,11 @@ body {
   font-size: 80%;
 }
 
+.todo-component.todo-component__label {
+  display: flex;
+  align-items: center;
+}
+
 .todo-component .todo-component__list {
   width: 100%;
   margin: 0px;
@@ -91,8 +100,8 @@ body {
   justify-content: space-between;
   font-size: 83%;
 }
-.todo-component .todo-component__list-row:hover > .btn.btn--large-delete {
-  display: flex;
+.todo-component .todo-component__list-row:hover > .btn.btn--large-warning {
+  opacity: 1;
 }
 
 .todo-component .todo-component__list-row-text {
@@ -128,23 +137,22 @@ body {
   border: 2px solid #961bfb;
 }
 
-.btn.btn--large-add {
-  width: 15%;
-  padding: 1px 0;
+.btn.btn--large {
+  padding: 1px 5px;
   font-weight: bold;
   font-size: 25px;
 }
-.btn.btn--large-delete {
-  display: none;
-  width: 15%;
+.btn.btn--large-warning {
+  display: flex;
   padding: 8.5px 11px;
   background-color: #f32727;
   border: 2px solid #f32727;
 }
 
-.btn.btn--small-organizer {
+.list_button {
   width: 10%;
   padding: 0;
+  cursor: hand;
   font-size: 15px;
   color: #000;
   background-color: #fff;

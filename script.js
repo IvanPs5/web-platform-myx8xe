@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.btn.btn--large-add').click(function () {
+  $('.btn.btn--large').click(function () {
     createListRow();
     updateFooterText();
   });
@@ -9,28 +9,21 @@ $(document).ready(function () {
     updateFooterText();
   });
 
-  $('#button-show-all-tasks').click(function () {
+  $('.list_button').click(function () {
+    console.log($(this).attr('class').val());
     showTasks('all');
   });
 
-  $('#button-show-completed-tasks').click(function () {
+  $('.list_button').click(function () {
     showTasks('completed');
   });
 
-  $('#button-show-pending-tasks').click(function () {
+  $('list_button').click(function () {
     showTasks('pending');
   });
 
   $('.btn--large-delete').on('click', function () {
     removeListRow($(this).parent());
-  });
-
-  $('.todo-component__checkbox').on('click', function () {
-    activateCheckbox($(this));
-  });
-
-  $('.todo-component__list-row-text').on('click', function () {
-    activateCheckbox($(this).find('input'));
   });
 
   function activateCheckbox(checkbox) {
@@ -61,13 +54,12 @@ $(document).ready(function () {
     checkbox.on('click', function () {
       activateCheckbox($(this));
     });
-    let text = $('<label>')
-      .attr('class', 'todo-component__text')
-      .text($('#add-new-todo').val());
-    textDiv.append(checkbox);
-    textDiv.append(text);
+    let label = $('<label>').attr('class', 'todo-component__label');
+    label.append(checkbox);
+    label.append($('#add-new-todo').val());
+    textDiv.append(label);
 
-    let buttonDelete = $('<button>').attr('class', 'btn btn--large-delete');
+    let buttonDelete = $('<button>').attr('class', 'btn btn--large-warning');
     let iconButton = $('<i>').attr('class', 'fas fa-trash');
     buttonDelete.append(iconButton);
     buttonDelete.on('click', function () {
