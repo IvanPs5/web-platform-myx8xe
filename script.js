@@ -4,7 +4,7 @@ $(document).ready(function () {
     updateFooterText();
   });
 
-  $('#clear-button').click(function () {
+  $('.todo-component__footer .btn').click(function () {
     clearList();
     updateFooterText();
   });
@@ -75,7 +75,8 @@ $(document).ready(function () {
     if (sizeList === 1) {
       footerText = 'You have ' + sizeList + ' pending task.';
     }
-    $('#text_pending_task').text(footerText);
+    let footer = $('.todo-component__footer').find('span')[0];
+    $(footer).text(footerText);
   }
 
   function calculateCheckboxChecked() {
@@ -91,14 +92,19 @@ $(document).ready(function () {
     let isPendingTasks = target === 'fas fa-list';
 
     $('.todo-component__checkbox').each(function () {
+      let retValue = undefined;
+
       let task = $(this).parent().parent().parent();
       task.show();
       if (isCompletedTasks && $(this).prop('checked')) {
-        return true;
+        retValue = true;
+      } else {
+        if (isCompletedTasks || (isPendingTasks && $(this).prop('checked'))) {
+          task.hide();
+        }
       }
-      if (isCompletedTasks || (isPendingTasks && $(this).prop('checked'))) {
-        task.hide();
-      }
+
+      return retValue;
     });
   }
 });

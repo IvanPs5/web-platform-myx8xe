@@ -1,3 +1,6 @@
+/*
+Global styles
+*/
 html {
   box-sizing: border-box;
 }
@@ -20,19 +23,35 @@ body {
   min-width: 320px;
 }
 
-.hidden {
-  display: none;
+/*
+Atoms
+*/
+
+.btn {
+  padding: 5px 8px;
+  border: 2px solid #961bfb;
+  cursor: hand;
+  color: #fff;
+  background-color: #961bfb;
 }
 
-.one-column-centered-layout {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+.btn.btn--large {
+  padding: 2px 8px;
+  font-weight: bold;
+  font-size: 25px;
 }
+
+.btn.btn--large-warning {
+  padding: 8.5px 11px;
+  background-color: #f32727;
+  border-color: #f32727;
+}
+
+/*
+Organisms
+*/
 
 .todo-component {
-  width: 300px;
   padding: 9px 19px;
   border-radius: 7px;
   background: white;
@@ -87,20 +106,29 @@ body {
 }
 
 .todo-component .todo-component__list {
-  width: 100%;
-  margin: 0px;
+  margin: 0;
   padding: 0px;
   list-style: none;
 }
 
 .todo-component .todo-component__list-row {
   display: flex;
-  padding-top: 3px;
+  margin-top: 4px;
+  padding-top: 0;
   align-items: center;
   justify-content: space-between;
+  background-color: #dfdcdc;
   font-size: 83%;
 }
 .todo-component .todo-component__list-row:hover > .btn.btn--large-warning {
+  opacity: 1;
+}
+
+.todo-component__list-row .btn.btn--large-warning {
+  opacity: 0;
+}
+
+.todo-component__list-row .btn.btn--large-warning:focus {
   opacity: 1;
 }
 
@@ -109,8 +137,8 @@ body {
   width: 100%;
   padding: 8px 7px;
   column-gap: 5px;
-  cursor: hand;
   align-items: center;
+  cursor: hand;
   background-color: #dfdcdc;
   font-size: 14px;
 }
@@ -118,10 +146,11 @@ body {
 .todo-component .todo-component__buttons-organizers {
   padding: 2px 1px;
 }
+
 .todo-component .todo-component__list-buttons {
-  list-style-type: none;
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 
 .todo-component .todo-component__list-buttons-row {
@@ -129,32 +158,24 @@ body {
   padding-right: 12px;
 }
 
-.btn {
-  padding: 5px 8px;
-  cursor: hand;
-  color: #fff;
-  background-color: #961bfb;
-  border: 2px solid #961bfb;
-}
-
-.btn.btn--large {
-  padding: 1px 5px;
-  font-weight: bold;
-  font-size: 25px;
-}
-.btn.btn--large-warning {
-  display: flex;
-  padding: 8.5px 11px;
-  background-color: #f32727;
-  border: 2px solid #f32727;
-}
-
 .list_button {
   width: 10%;
   padding: 0;
+  border: none;
   cursor: hand;
   font-size: 15px;
   color: #000;
   background-color: #fff;
-  border: none;
+}
+
+/*
+Layouts
+*/
+.one-column-centered-layout {
+  display: flex;
+  max-width: 300px;
+  margin: 0 auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
