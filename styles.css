@@ -158,7 +158,27 @@ Organisms
   padding-right: 12px;
 }
 
-.list_button {
+.todo-component__list_button {
+  width: 10%;
+  padding: 0;
+  border: none;
+  cursor: hand;
+  font-size: 15px;
+  color: #000;
+  background-color: #fff;
+}
+
+.todo-component__list_button--completed {
+  width: 10%;
+  padding: 0;
+  border: none;
+  cursor: hand;
+  font-size: 15px;
+  color: #000;
+  background-color: #fff;
+}
+
+.todo-component__list_button--pending {
   width: 10%;
   padding: 0;
   border: none;

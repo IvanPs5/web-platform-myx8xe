@@ -9,9 +9,16 @@ $(document).ready(function () {
     updateFooterText();
   });
 
-  $('.list_button').click(function () {
-    let action = $(this).find('i')[0];
-    showTasks($(action).attr('class'));
+  $('.todo-component__list_button').click(function () {
+    showTasks($(this));
+  });
+
+  $('.todo-component__list_button--completed').click(function () {
+    showTasks($(this));
+  });
+
+  $('.todo-component__list_button--pending').click(function () {
+    showTasks($(this));
   });
 
   $('.btn--large-delete').on('click', function () {
@@ -33,7 +40,8 @@ $(document).ready(function () {
   }
   function createListRow() {
     let inptuValue = $('#add-new-todo').val();
-    if (!inptuValue === null && !inptuValue === '') {
+    console.log(inptuValue != '');
+    if (inptuValue !== null && inptuValue != '') {
       let list = $('.todo-component__list');
 
       let row = $('<li>').attr('class', 'todo-component__list-row');
@@ -90,9 +98,12 @@ $(document).ready(function () {
     return checkboxesChecked;
   }
 
-  function showTasks(hasClass) {
-    let isCompletedTasks = hasClass === 'fas fa-tasks';
-    let isPendingTasks = hasClass === 'fas fa-list';
+  function showTasks(target) {
+    let hasClass = $(target).attr('class');
+
+    let isCompletedTasks =
+      hasClass === 'todo-component__list_button--completed';
+    let isPendingTasks = hasClass === 'todo-component__list_button--pending';
 
     $('.todo-component__checkbox').each(function () {
       let retValue = undefined;
