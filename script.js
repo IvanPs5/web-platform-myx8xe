@@ -13,7 +13,7 @@ $(document).ready(function () {
     showTasks($(this));
   });
 
-  $('.todo-component__laist_button--completed').click(function () {
+  $('.todo-component__list_button--completed').click(function () {
     showTasks($(this));
   });
 
