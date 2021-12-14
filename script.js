@@ -38,17 +38,19 @@ $(document).ready(function () {
     element.remove();
     updateFooterText();
   }
-
-  function isScript(text) {
-    return text.indexOf('<script>') > -1;
+  function isSafeText(text) {
+    let returnValue = true;
+    returnValue = text.indexOf('<script>') > -1;
+    return returnValue;
   }
+
   function createListRow() {
     let input = $('.todo-component__input-area').find(
       '.todo-component__input'
     )[0];
     inputValue = $(input).val().trim();
-    isSafeText = isScript(inputValue);
-    if (inputValue !== null && inputValue != '' && isSafeText) {
+
+    if (inputValue !== null && inputValue != '' && isSafeText(text)) {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
 
