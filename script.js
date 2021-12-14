@@ -41,7 +41,15 @@ $(document).ready(function () {
 
   function isSafeText(text) {
     let returnValue = true;
-
+    if (text.includes('<scrip')) {
+      returnValue = true;
+    }
+    if (text.includes('<img')) {
+      returnValue = true;
+    }
+    if (text.includes('<h1')) {
+      returnValue = true;
+    }
     return returnValue;
   }
 
@@ -50,7 +58,7 @@ $(document).ready(function () {
       '.todo-component__input'
     )[0];
     inputValue = $(input).val().trim();
-    console.log(inputValue.includes('<scrip'));
+    console.log();
     if (inputValue !== null && inputValue != '') {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
