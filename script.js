@@ -41,9 +41,7 @@ $(document).ready(function () {
 
   function isSafeText(text) {
     let returnValue = true;
-    if (text.indexOf('<script>') > -1) {
-      returnValue = false;
-    }
+    
     return returnValue;
   }
 
