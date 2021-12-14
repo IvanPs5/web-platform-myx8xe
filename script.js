@@ -41,7 +41,7 @@ $(document).ready(function () {
 
   function isSafeText(text) {
     let returnValue = true;
-    if ($(inputValue).includes('<script>')) {
+    if ($(text).includes('<script>')) {
     }
     return returnValue;
   }
