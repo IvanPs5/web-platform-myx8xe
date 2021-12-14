@@ -50,7 +50,7 @@ $(document).ready(function () {
       '.todo-component__input'
     )[0];
     inputValue = $(input).val().trim();
-    console.log(inputValue.includes('<script'));
+    console.log(inputValue.includes('<'));
     if (inputValue !== null && inputValue != '') {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
