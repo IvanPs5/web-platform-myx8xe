@@ -40,41 +40,47 @@ $(document).ready(function () {
   }
 
   function createListRow() {
-    let input = $('.todo-component__input-area').find(
-      '.todo-component__input'
-    )[0];
+    let input = $('.todo-component__input-area').find('.todo-component__input');
     inputValue = $(input).val().trim();
     if (inputValue !== null && inputValue != '') {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
 
-      let row = $('<li>').attr('class', 'todo-component__list-row');
+      let row = $('<li>').addClass('todo-component__list-row');
       row.on('click', function () {
         activateCheckbox($(this).find('input'));
       });
 
-      let textDiv = $('<div>').attr('class', 'todo-component__list-row-text');
-      let checkbox = $('<input>')
-        .attr('class', 'todo-component__checkbox')
+      let textDiv = $('<div>').addClass('todo-component__list-row-text');
+      let checkbox = $('<input/>')
+        .addClass('todo-component__checkbox')
         .attr('type', 'checkbox');
 
-      let label = $('<label>').attr('class', 'todo-component__label');
+      let label = $('<label>').addClass('todo-component__label');
       label.on('click', function () {
         activateCheckbox($(this).find('input'));
       });
       label.append(checkbox);
-      label.append($('<div>').text(inputValue).html());
+      label.append($('<div/>').text(inputValue));
+      label.append($('</label>'));
       textDiv.append(label);
+      textDiv.append($('</div>'));
 
-      let buttonDelete = $('<button>').attr('class', 'btn btn--large-warning');
-      let iconButton = $('<i>').attr('class', 'fas fa-trash');
+      let divWrapBtn = $('<div>').addClass('todo-component__wrap-btn');
+      let buttonDelete = $('<button>').addClass('btn btn--large-warning');
+      let iconButton = $('<i>').addClass('fas fa-trash');
       buttonDelete.append(iconButton);
+      buttonDelete.append($('</i>'));
+      buttonDelete.append($('</button>'));
       buttonDelete.on('click', function () {
         removeListRow($(this).parent());
       });
+      divWrapBtn.append(buttonDelete);
+      divWrapBtn.append($('</div>'));
 
       row.append(textDiv);
-      row.append(buttonDelete);
+      row.append(divWrapBtn);
+      row.append($('</li>'));
       list.append(row);
     }
     $(input).val('');
@@ -92,43 +98,33 @@ $(document).ready(function () {
     if (sizeList === 1) {
       footerText = 'You have ' + sizeList + ' pending task.';
     }
-    let footer = $('.todo-component__footer').find('span')[0];
-    $(footer).text(footerText);
+    let footerTextElm = $('.todo-component__footer').find('span');
+    footerTextElm.text(footerText);
   }
 
   function calculateCheckboxChecked() {
-    let checkboxesChecked = 0;
-    $('.todo-component__checkbox:checked').each(function () {
-      checkboxesChecked++;
-    });
-    return checkboxesChecked;
+    return $('.todo-component__checkbox:checked').length;
   }
 
   function showTasks(target) {
-    let hasClass = $(target).attr('class');
-
-    let isCompletedTasks =
-      hasClass === 'todo-component__list_button--completed';
-    let isPendingTasks = hasClass === 'todo-component__list_button--pending';
+    const shouldShowCompleted = target.hasClass(
+      'todo-component__list_button--completed'
+    );
+    const shouldShowPending = target.hasClass(
+      'todo-component__list_button--pending'
+    );
 
     $('.todo-component__checkbox').each(function () {
-      let retValue = undefined;
+      const task = $(this).parents('.todo-component__list-row');
+      task.removeClass('todo-component__list-row--hidden');
 
-      let task = $(this).parents('.todo-component__list-row')[0];
-      if (task == null) {
-        task = $(this).parents('.todo-component__list-row--hidden')[0];
+      const isChecked = $(this).prop('checked');
+      if (
+        (shouldShowCompleted && !isChecked) ||
+        (shouldShowPending && isChecked)
+      ) {
+        $(task).addClass('todo-component__list-row--hidden');
       }
-
-      $(task).attr('class', 'todo-component__list-row');
-      if (isCompletedTasks && $(this).prop('checked')) {
-        retValue = true;
-      } else {
-        if (isCompletedTasks || (isPendingTasks && $(this).prop('checked'))) {
-          $(task).attr('class', 'todo-component__list-row--hidden');
-        }
-      }
-
-      return retValue;
     });
   }
 });

@@ -100,9 +100,10 @@ Organisms
   font-size: 80%;
 }
 
-.todo-component.todo-component__label {
+.todo-component .todo-component__label {
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 .todo-component .todo-component__list {
@@ -120,19 +121,21 @@ Organisms
   background-color: #dfdcdc;
   font-size: 83%;
 }
-.todo-component__list-row--hidden {
+
+.todo-component .todo-component__list-row.todo-component__list-row--hidden {
   display: none;
 }
-.todo-component .todo-component__list-row:hover > .btn.btn--large-warning {
+
+.todo-component .todo-component__list-row .btn.btn--large-warning:focus {
   opacity: 1;
 }
 
-.todo-component__list-row .btn.btn--large-warning {
+.todo-component .todo-component__list-row:hover > .todo-component__wrap-btn {
+  opacity: 1;
+}
+
+.todo-component .todo-component__wrap-btn {
   opacity: 0;
-}
-
-.todo-component__list-row .btn.btn--large-warning:focus {
-  opacity: 1;
 }
 
 .todo-component .todo-component__list-row-text {
@@ -161,7 +164,7 @@ Organisms
   padding-right: 12px;
 }
 
-.todo-component__list_button {
+.todo-component .todo-component__list_button {
   width: 10%;
   padding: 0;
   border: none;
@@ -171,7 +174,8 @@ Organisms
   background-color: #fff;
 }
 
-.todo-component__list_button--completed {
+.todo-component
+  .todo-component__list_button.todo-component__list_button--completed {
   width: 10%;
   padding: 0;
   border: none;
@@ -181,7 +185,8 @@ Organisms
   background-color: #fff;
 }
 
-.todo-component__list_button--pending {
+.todo-component
+  .todo-component__list_button.todo-component__list_button--pending {
   width: 10%;
   padding: 0;
   border: none;
