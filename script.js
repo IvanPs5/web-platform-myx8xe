@@ -39,6 +39,11 @@ $(document).ready(function () {
     updateFooterText();
   }
 
+  function isSafeText(text) {
+    let returnValue = true;
+    return returnValue;
+  }
+
   function createListRow() {
     let input = $('.todo-component__input-area').find(
       '.todo-component__input'
