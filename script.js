@@ -41,6 +41,7 @@ $(document).ready(function () {
 
   function isSafeText(text) {
     let returnValue = true;
+
     return returnValue;
   }
 
