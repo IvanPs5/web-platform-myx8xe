@@ -120,6 +120,9 @@ Organisms
   background-color: #dfdcdc;
   font-size: 83%;
 }
+.todo-component__list-row--hidden {
+  display: none;
+}
 .todo-component .todo-component__list-row:hover > .btn.btn--large-warning {
   opacity: 1;
 }
