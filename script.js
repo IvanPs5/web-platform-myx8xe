@@ -50,7 +50,7 @@ $(document).ready(function () {
     )[0];
     inputValue = $(input).val().trim();
 
-    if (inputValue !== null && inputValue != '' && isSafeText(text)) {
+    if (inputValue !== null && inputValue != '') {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
 
