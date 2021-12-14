@@ -39,26 +39,11 @@ $(document).ready(function () {
     updateFooterText();
   }
 
-  function isSafeText(text) {
-    let returnValue = true;
-    if (text.includes('<scrip')) {
-      returnValue = true;
-    }
-    if (text.includes('<img')) {
-      returnValue = true;
-    }
-    if (text.includes('<h1')) {
-      returnValue = true;
-    }
-    return returnValue;
-  }
-
   function createListRow() {
     let input = $('.todo-component__input-area').find(
       '.todo-component__input'
     )[0];
     inputValue = $(input).val().trim();
-    console.log();
     if (inputValue !== null && inputValue != '') {
       inputValue = $(input).val();
       let list = $('.todo-component__list');
@@ -78,7 +63,7 @@ $(document).ready(function () {
         activateCheckbox($(this).find('input'));
       });
       label.append(checkbox);
-      label.append(inputValue);
+      label.append($('<div>').text(inputValue).html());
       textDiv.append(label);
 
       let buttonDelete = $('<button>').attr('class', 'btn btn--large-warning');
