@@ -13,7 +13,7 @@ $(document).ready(function () {
     showTasks($(this));
   });
 
-  $('.todo-component__list_button--completed').click(function () {
+  $('.todo-component__laist_button--completed').click(function () {
     showTasks($(this));
   });
 
@@ -37,11 +37,6 @@ $(document).ready(function () {
   function removeListRow(element) {
     element.remove();
     updateFooterText();
-  }
-  function isSafeText(text) {
-    let returnValue = true;
-    returnValue = text.indexOf('<script>') > -1;
-    return returnValue;
   }
 
   function createListRow() {
