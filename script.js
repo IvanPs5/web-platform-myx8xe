@@ -1,9 +1,4 @@
 $(document).ready(function () {
-  $('.todo-component .btn.btn--large').click(function () {
-    createListRow();
-    updateFooterText();
-  });
-
   $('.todo-component__footer .btn').click(function () {
     clearList();
     updateFooterText();
@@ -23,6 +18,12 @@ $(document).ready(function () {
 
   $('.btn--large-delete').on('click', function () {
     removeListRow($(this).parent());
+  });
+
+  $('.todo-component__form').on('submit', function (event) {
+    event.preventDefault();
+    createListRow();
+    updateFooterText();
   });
 
   function activateCheckbox(checkbox) {
