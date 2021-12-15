@@ -64,7 +64,11 @@ Organisms
   font-size: 25px;
 }
 
-.todo-component__title h3 {
+.todo-component .todo-component__title h3 {
+  margin: 0;
+}
+
+.todo-component .todo-component__form {
   margin: 0;
 }
 
