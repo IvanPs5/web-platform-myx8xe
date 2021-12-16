@@ -136,10 +136,6 @@ Organisms
   display: none;
 }
 
-.todo-component .todo-component__list-row.todo-component__list-row--hidden {
-  display: none;
-}
-
 .todo-component .todo-component__list-row .btn.btn--large-warning:focus {
   opacity: 1;
 }
@@ -179,35 +175,48 @@ Organisms
 }
 
 .todo-component .todo-component__list_button {
-  width: 10%;
-  padding: 0;
-  border: none;
+  width: 100%;
+  padding: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
   cursor: hand;
   font-size: 15px;
   color: #000;
+  background-color: gray;
+}
+.todo-component.todo-component.todo-component--showing-completed
+  .todo-component__list_button {
+  border-color: #fff;
+  background-color: #fff;
+}
+.todo-component.todo-component.todo-component--showing-pending
+  .todo-component__list_button {
+  border-color: #fff;
   background-color: #fff;
 }
 
 .todo-component
   .todo-component__list_button.todo-component__list_button--completed {
-  width: 10%;
-  padding: 0;
-  border: none;
-  cursor: hand;
-  font-size: 15px;
-  color: #000;
+  border-color: #fff;
   background-color: #fff;
+}
+
+.todo-component.todo-component.todo-component--showing-completed
+  .todo-component__list_button.todo-component__list_button--completed {
+  border-color: #000;
+  background-color: gray;
 }
 
 .todo-component
   .todo-component__list_button.todo-component__list_button--pending {
-  width: 10%;
-  padding: 0;
-  border: none;
-  cursor: hand;
-  font-size: 15px;
-  color: #000;
+  border-color: #fff;
   background-color: #fff;
+}
+.todo-component.todo-component.todo-component--showing-pending
+  .todo-component__list_button.todo-component__list_button--pending {
+  border-color: #000;
+  background-color: gray;
 }
 
 /*

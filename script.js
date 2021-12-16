@@ -40,8 +40,6 @@ $(document).ready(function () {
     }
     checkbox.prop('checked', valueChecked);
     const row = checkbox.parents('.todo-component__list-row');
-    console.log(row);
-    console.log(valueChecked);
     if (valueChecked) {
       row.removeClass('todo-component__list-row--pending');
       row.addClass('todo-component__list-row--completed');
@@ -104,8 +102,9 @@ $(document).ready(function () {
       row.append(divWrapBtn);
       row.append($('</li>'));
       list.append(row);
+
+      $(input).val('');
     }
-    $(input).val('');
   }
 
   function clearList() {
