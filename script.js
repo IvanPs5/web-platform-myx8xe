@@ -59,8 +59,8 @@ $(document).ready(function () {
     const input = $('.todo-component__input-area').find(
       '.todo-component__input'
     );
-    inputValue = $(input).val().trim();
-    if (inputValue !== null && inputValue != '') {
+    let inputValue = input.val().trim();
+    if (inputValue !== '') {
       inputValue = $(input).val();
       const list = $('.todo-component__list');
 
@@ -72,9 +72,9 @@ $(document).ready(function () {
       });
 
       const textDiv = $('<div>').addClass('todo-component__list-row-text');
-      const checkbox = $('<input/>')
-        .addClass('todo-component__checkbox')
-        .attr('type', 'checkbox');
+      const checkbox = $(
+        '<input type="checkbox" class="todo-component__checkbox"/>'
+      );
 
       const label = $('<label>').addClass('todo-component__label');
       label.on('click', function () {
@@ -82,28 +82,26 @@ $(document).ready(function () {
       });
       label.append(checkbox);
       label.append($('<div/>').text(inputValue));
-      label.append($('</label>'));
       textDiv.append(label);
-      textDiv.append($('</div>'));
 
       const divWrapBtn = $('<div>').addClass('todo-component__wrap-btn');
       const buttonDelete = $('<button>').addClass('btn btn--large-warning');
       const iconButton = $('<i>').addClass('fas fa-trash');
       buttonDelete.append(iconButton);
-      buttonDelete.append($('</i>'));
-      buttonDelete.append($('</button>'));
       buttonDelete.on('click', function () {
         removeListRow($(this).parents('.todo-component__list-row'));
       });
       divWrapBtn.append(buttonDelete);
-      divWrapBtn.append($('</div>'));
 
       row.append(textDiv);
       row.append(divWrapBtn);
-      row.append($('</li>'));
       list.append(row);
 
       $(input).val('');
+
+      const todoComponent = input.parents('.todo-component');
+      todoComponent.removeClass('todo-component--showing-completed');
+      todoComponent.removeClass('todo-component--showing-pending');
     }
   }
 
