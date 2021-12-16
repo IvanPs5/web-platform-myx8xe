@@ -122,8 +122,18 @@ Organisms
   padding-top: 0;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
   background-color: #dfdcdc;
   font-size: 83%;
+}
+.todo-component.todo-component--showing-completed
+  .todo-component__list-row.todo-component__list-row--pending {
+  display: none;
+}
+
+.todo-component.todo-component--showing-pending
+  .todo-component__list-row.todo-component__list-row--completed {
+  display: none;
 }
 
 .todo-component .todo-component__list-row.todo-component__list-row--hidden {
