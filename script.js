@@ -1,43 +1,4 @@
 $(document).ready(function () {
-  $('.todo-component__footer .btn').click(function () {
-    clearList();
-    updateFooterText();
-  });
-
-  $('.todo-component__list_button').click(function () {
-    showAllTasks($(this));
-  });
-
-  $('.todo-component__list_button--completed').click(function () {
-    showCompletedTasks($(this));
-  });
-
-  $('.todo-component__list_button--pending').click(function () {
-    showPendingTasks($(this));
-  });
-
-  $('.btn--large-delete').on('click', function () {
-    removeListRow($(this).parents('.todo-component__list-row'));
-  });
-
-  function showAllTasks(target) {
-    const todoComponent = target.parents('.todo-component');
-    todoComponent.removeClass('todo-component--showing-completed');
-    todoComponent.removeClass('todo-component--showing-pending');
-  }
-
-  function showCompletedTasks(target) {
-    const todoComponent = target.parents('.todo-component');
-    todoComponent.removeClass('todo-component--showing-pending');
-    todoComponent.addClass('todo-component--showing-completed');
-  }
-
-  function showPendingTasks(target) {
-    const todoComponent = target.parents('.todo-component');
-    todoComponent.removeClass('todo-component--showing-completed');
-    todoComponent.addClass('todo-component--showing-pending');
-  }
-
   function activateCheckbox(checkbox) {
     let valueChecked = true;
 
@@ -131,146 +92,71 @@ $(document).ready(function () {
     return $('.todo-component__checkbox:checked').length;
   }
 
-  $.widget('custom.todo-component__input', {
-    options: {
-      textValue: '',
-    },
-    _create: function () {
-      this.options.value = this._constrain(this.options.value);
-      this.element.addClass('todo-component__input');
-      this.refresh();
-    },
-    _setOption: function (key, value) {
-      if (key === 'value') {
-        value = this._constrain(value);
-      }
-      this._super(key, value);
-    },
-    _setOptions: function (options) {
-      this._super(options);
-      this.refresh();
-    },
-    _destroy: function () {
-      this.element.removeClass('todo-component__input').text('');
-    },
-  });
-
   $(function () {
-    $.widget('custom.inputTasks', {
+    $.widget('custom.todoComponent', {
       options: {},
       _create: function () {
-        const formElm = $('<form/>', {
-          action: '',
-          class: 'todo-component__form',
-        }).appendTo(this.element);
-        const divElm = $('<div/>', {
-          class: 'todo-component__input-area',
-        }).appendTo(formElm);
-        const inputElm = $('<input>', {
-          class: 'todo-component__input',
-          placeholder: 'Add your new todo',
-        }).appendTo(divElm);
-        const btnElm = $('<button/>', {
-          type: 'submit',
-          text: '+',
-          class: 'btn btn--large',
-        }).appendTo(divElm);
+        const todoComponent = this.element;
+        const form = todoComponent.find('.todo-component__form');
+        this._on(form, {
+          submit: 'submitForm',
+        });
+        const btnOrganizer = todoComponent.find('.todo-component__list_button');
+        this._on(btnOrganizer, {
+          click: 'showAllTasks',
+        });
+        const btnOrganizerCompleted = todoComponent.find(
+          '.todo-component__list_button--completed'
+        );
+        this._on(btnOrganizerCompleted, {
+          click: 'showCompletedTasks',
+        });
+        const btnOrganizerPending = todoComponent.find(
+          '.todo-component__list_button--pending'
+        );
+        this._on(btnOrganizerPending, {
+          click: 'showPendingTasks',
+        });
+        const deleteBtn = todoComponent.find('.btn btn--large-warning');
+        this._on(deleteBtn, {
+          click: 'deleteRow',
+        });
+        const footerBtn = todoComponent.find('.todo-component__footer .btn');
+        this._on(footerBtn, {
+          click: 'clearList',
+        });
       },
-      _setOption: function (key, value) {
-        this._super(key, value);
+      showAllTasks: function () {
+        const todoComponent = this.element;
+        todoComponent.removeClass('todo-component--showing-completed');
+        todoComponent.removeClass('todo-component--showing-pending');
       },
-      _setOptions: function (options) {
-        this._super(options);
+      showCompletedTasks: function () {
+        const todoComponent = this.element;
+        todoComponent.removeClass('todo-component--showing-pending');
+        todoComponent.addClass('todo-component--showing-completed');
+      },
+      showPendingTasks: function () {
+        const todoComponent = this.element;
+        todoComponent.removeClass('todo-component--showing-completed');
+        todoComponent.addClass('todo-component--showing-pending');
+      },
+      submitForm: function () {
+        event.preventDefault();
+        createListRow();
+        updateFooterText();
+      },
+      deleteRow: function () {
+        removeListRow($(this).parents('.todo-component__list-row'));
+      },
+      clearList: function () {
+        clearList();
+        updateFooterText();
       },
       _destroy: function () {
-        this.element.removeClass('todo-component__input-area').text('');
+        this.element.removeClass('todo-component').text('');
       },
     });
-    $('.todo-component__widget-input').inputTasks();
-
-    $.widget('custom.listButtonsOrganizers', {
-      options: {},
-      _create: function () {
-        this.element.addClass('todo-component__buttons-organizers');
-        const ulElm = $('<ul/>', {
-          class: 'todo-component__list-buttons',
-        }).appendTo(this.element);
-        ulElm.append(
-          this._createNewLiWithBtn(
-            'todo-component__list_button',
-            'fas fa-th-list'
-          )
-        );
-
-        ulElm.append(
-          this._createNewLiWithBtn(
-            'todo-component__list_button todo-component__list_button--completed',
-            'fas fa-tasks'
-          )
-        );
-
-        ulElm.append(
-          this._createNewLiWithBtn(
-            'todo-component__list_button todo-component__list_button--pending',
-            'fas fa-list'
-          )
-        );
-      },
-
-      _setOptions: function (options) {
-        this._super(options);
-      },
-      _createNewLiWithBtn: function (classNameBtn, classNameBtnIcon) {
-        const btnElm = this._createNewBtn(classNameBtn, classNameBtnIcon);
-        const liElm = $('<li/>', {
-          class: 'todo-component__list-buttons-row',
-        });
-        btnElm.appendTo(liElm);
-        return liElm;
-      },
-      _createNewBtn: function (className, classNameIcon) {
-        const btnElm = $('<button/>', {
-          class: '' + className,
-          click: function () {
-            showAllTasks(btnElm);
-          },
-        });
-        if (
-          className ===
-          'todo-component__list_button todo-component__list_button--completed'
-        ) {
-          btnElm.click(function () {
-            showCompletedTasks(btnElm);
-          });
-        }
-
-        if (
-          className ===
-          'todo-component__list_button todo-component__list_button--pending'
-        ) {
-          btnElm.click(function () {
-            showPendingTasks(btnElm);
-          });
-        }
-
-        const iElm = $('<i/>', {
-          class: '' + classNameIcon,
-        }).appendTo(btnElm);
-        return btnElm;
-      },
-      _destroy: function () {
-        this.element.removeClass('todo-component__buttons-organizers').text('');
-      },
-    });
-
-    $(
-      '.todo-component__widget-list-buttons-organizers'
-    ).listButtonsOrganizers();
-
-    $('.todo-component__form').on('submit', function (event) {
-      event.preventDefault();
-      createListRow();
-      updateFooterText();
-    });
+    $('.todo-component').todoComponent();
   });
 });
