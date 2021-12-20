@@ -22,56 +22,6 @@ $(document).ready(function () {
     updateFooterText();
   }
 
-  function createListRow() {
-    const input = $('.todo-component__input-area').find(
-      '.todo-component__input'
-    );
-    let inputValue = input.val().trim();
-    if (inputValue !== '') {
-      inputValue = $(input).val();
-      const listElm = $('.todo-component__list');
-
-      const rowElm = $('<li/>').addClass(
-        'todo-component__list-row todo-component__list-row--pending'
-      );
-      rowElm.on('click', function () {
-        activateCheckbox($(this).find('input'));
-      });
-
-      const textDivElm = $('<div/>').addClass('todo-component__list-row-text');
-      const checkboxElm = $(
-        '<input type="checkbox" class="todo-component__checkbox"/>'
-      );
-
-      const labelElm = $('<label/>').addClass('todo-component__label');
-      labelElm.on('click', function () {
-        activateCheckbox($(this).find('input'));
-      });
-      labelElm.append(checkboxElm);
-      labelElm.append($('<div/>').text(inputValue));
-      textDivElm.append(labelElm);
-
-      const divWrapBtnElm = $('<div/>').addClass('todo-component__wrap-btn');
-      const buttonDeleteElm = $('<button/>').addClass('btn btn--large-warning');
-      const iconButtonElm = $('<i/>').addClass('fas fa-trash');
-      buttonDeleteElm.append(iconButtonElm);
-      buttonDeleteElm.on('click', function () {
-        removeListRow($(this).parents('.todo-component__list-row'));
-      });
-      divWrapBtnElm.append(buttonDeleteElm);
-
-      rowElm.append(textDivElm);
-      rowElm.append(divWrapBtnElm);
-      listElm.append(rowElm);
-
-      $(input).val('');
-
-      const todoComponentElm = input.parents('.todo-component');
-      todoComponentElm.removeClass('todo-component--showing-completed');
-      todoComponentElm.removeClass('todo-component--showing-pending');
-    }
-  }
-
   function clearList() {
     const list = $('.todo-component__list');
     list.empty();
@@ -127,27 +77,80 @@ $(document).ready(function () {
         });
       },
       showAllTasks: function () {
-        const todoComponent = this.element;
-        todoComponent.removeClass('todo-component--showing-completed');
-        todoComponent.removeClass('todo-component--showing-pending');
+        const todoComponentElm = this.element;
+        todoComponentElm.removeClass('todo-component--showing-completed');
+        todoComponentElm.removeClass('todo-component--showing-pending');
       },
       showCompletedTasks: function () {
-        const todoComponent = this.element;
-        todoComponent.removeClass('todo-component--showing-pending');
-        todoComponent.addClass('todo-component--showing-completed');
+        const todoComponentElm = this.element;
+        todoComponentElm.removeClass('todo-component--showing-pending');
+        todoComponentElm.addClass('todo-component--showing-completed');
       },
       showPendingTasks: function () {
-        const todoComponent = this.element;
-        todoComponent.removeClass('todo-component--showing-completed');
-        todoComponent.addClass('todo-component--showing-pending');
+        const todoComponentElm = this.element;
+        todoComponentElm.removeClass('todo-component--showing-completed');
+        todoComponentElm.addClass('todo-component--showing-pending');
       },
       submitForm: function () {
         event.preventDefault();
-        createListRow();
+        this.createNewTask();
         updateFooterText();
       },
       deleteRow: function () {
         removeListRow($(this).parents('.todo-component__list-row'));
+      },
+      createNewTask: function () {
+        const todoComponentElm = this.element;
+        const input = todoComponentElm.find('.todo-component__input');
+        let inputValue = input.val().trim();
+        if (inputValue !== '') {
+          inputValue = $(input).val();
+          const listElm = $('.todo-component__list');
+
+          const rowElm = $('<li/>').addClass(
+            'todo-component__list-row todo-component__list-row--pending'
+          );
+          rowElm.on('click', function () {
+            activateCheckbox($(this).find('input'));
+          });
+
+          const textDivElm = $('<div/>').addClass(
+            'todo-component__list-row-text'
+          );
+          const checkboxElm = $(
+            '<input type="checkbox" class="todo-component__checkbox"/>'
+          );
+
+          const labelElm = $('<label/>').addClass('todo-component__label');
+          labelElm.on('click', function () {
+            activateCheckbox($(this).find('input'));
+          });
+          labelElm.append(checkboxElm);
+          labelElm.append($('<div/>').text(inputValue));
+          textDivElm.append(labelElm);
+
+          const divWrapBtnElm = $('<div/>').addClass(
+            'todo-component__wrap-btn'
+          );
+          const buttonDeleteElm = $('<button/>').addClass(
+            'btn btn--large-warning'
+          );
+          const iconButtonElm = $('<i/>').addClass('fas fa-trash');
+          buttonDeleteElm.append(iconButtonElm);
+          buttonDeleteElm.on('click', function () {
+            removeListRow($(this).parents('.todo-component__list-row'));
+          });
+          divWrapBtnElm.append(buttonDeleteElm);
+
+          rowElm.append(textDivElm);
+          rowElm.append(divWrapBtnElm);
+          listElm.append(rowElm);
+
+          $(input).val('');
+
+          todoComponentElm.removeClass('todo-component--showing-completed');
+          todoComponentElm.removeClass('todo-component--showing-pending');
+        }
       },
       clearList: function () {
         clearList();
