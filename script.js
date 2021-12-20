@@ -26,12 +26,6 @@ $(document).ready(function () {
     removeListRow($(this).parents('.todo-component__list-row'));
   });
 
-  $('.todo-component__form').on('submit', function (event) {
-    event.preventDefault();
-    createListRow();
-    updateFooterText();
-  });
-
   function activateCheckbox(checkbox) {
     let valueChecked = true;
 
@@ -62,46 +56,46 @@ $(document).ready(function () {
     let inputValue = input.val().trim();
     if (inputValue !== '') {
       inputValue = $(input).val();
-      const list = $('.todo-component__list');
+      const listElm = $('.todo-component__list');
 
-      const row = $('<li>').addClass(
+      const rowElm = $('<li/>').addClass(
         'todo-component__list-row todo-component__list-row--pending'
       );
-      row.on('click', function () {
+      rowElm.on('click', function () {
         activateCheckbox($(this).find('input'));
       });
 
-      const textDiv = $('<div>').addClass('todo-component__list-row-text');
-      const checkbox = $(
+      const textDivElm = $('<div/>').addClass('todo-component__list-row-text');
+      const checkboxElm = $(
         '<input type="checkbox" class="todo-component__checkbox"/>'
       );
 
-      const label = $('<label>').addClass('todo-component__label');
-      label.on('click', function () {
+      const labelElm = $('<label/>').addClass('todo-component__label');
+      labelElm.on('click', function () {
         activateCheckbox($(this).find('input'));
       });
-      label.append(checkbox);
-      label.append($('<div/>').text(inputValue));
-      textDiv.append(label);
+      labelElm.append(checkboxElm);
+      labelElm.append($('<div/>').text(inputValue));
+      textDivElm.append(labelElm);
 
-      const divWrapBtn = $('<div>').addClass('todo-component__wrap-btn');
-      const buttonDelete = $('<button>').addClass('btn btn--large-warning');
-      const iconButton = $('<i>').addClass('fas fa-trash');
-      buttonDelete.append(iconButton);
-      buttonDelete.on('click', function () {
+      const divWrapBtnElm = $('<div/>').addClass('todo-component__wrap-btn');
+      const buttonDeleteElm = $('<button/>').addClass('btn btn--large-warning');
+      const iconButtonElm = $('<i/>').addClass('fas fa-trash');
+      buttonDeleteElm.append(iconButtonElm);
+      buttonDeleteElm.on('click', function () {
         removeListRow($(this).parents('.todo-component__list-row'));
       });
-      divWrapBtn.append(buttonDelete);
+      divWrapBtnElm.append(buttonDeleteElm);
 
-      row.append(textDiv);
-      row.append(divWrapBtn);
-      list.append(row);
+      rowElm.append(textDivElm);
+      rowElm.append(divWrapBtnElm);
+      listElm.append(rowElm);
 
       $(input).val('');
 
-      const todoComponent = input.parents('.todo-component');
-      todoComponent.removeClass('todo-component--showing-completed');
-      todoComponent.removeClass('todo-component--showing-pending');
+      const todoComponentElm = input.parents('.todo-component');
+      todoComponentElm.removeClass('todo-component--showing-completed');
+      todoComponentElm.removeClass('todo-component--showing-pending');
     }
   }
 
@@ -124,4 +118,71 @@ $(document).ready(function () {
   function calculateCheckboxChecked() {
     return $('.todo-component__checkbox:checked').length;
   }
+
+  $.widget('custom.todo-component__input', {
+    options: {
+      textValue: '',
+    },
+    _create: function () {
+      this.options.value = this._constrain(this.options.value);
+      this.element.addClass('todo-component__input');
+      this.refresh();
+    },
+    _setOption: function (key, value) {
+      if (key === 'value') {
+        value = this._constrain(value);
+      }
+      this._super(key, value);
+    },
+    _setOptions: function (options) {
+      this._super(options);
+      this.refresh();
+    },
+    _destroy: function () {
+      this.element.removeClass('todo-component__input').text('');
+    },
+  });
+
+  $(function () {
+    $.widget('custom.inputTasks', {
+      options: {},
+      _create: function () {
+        this.element.addClass('todo-component__input-area');
+        const form = $('<form/>', {
+          action: '',
+          class: 'todo-component__form',
+        }).appendTo(this.element);
+        const div = $('<div/>', {
+          class: 'todo-component__input-area',
+        }).appendTo(form);
+        const input = $('<input>', {
+          class: 'todo-component__input',
+          placeholder: 'Add your new todo',
+        }).appendTo(div);
+        const btn = $('<button/>', {
+          type: 'submit',
+          text: '+',
+          class: 'btn btn--large',
+        }).appendTo(div);
+      },
+      _setOption: function (key, value) {
+        if (key === 'value') {
+        }
+        this._super(key, value);
+      },
+      _setOptions: function (options) {
+        this._super(options);
+      },
+      _destroy: function () {
+        this.element.removeClass('todo-component__input-area').text('');
+      },
+    });
+    $('#my-widget1').inputTasks();
+
+    $('.todo-component__form').on('submit', function (event) {
+      event.preventDefault();
+      createListRow();
+      updateFooterText();
+    });
+  });
 });
