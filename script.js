@@ -3,33 +3,37 @@ $(document).ready(function () {
     $.widget('custom.todoComponent', {
       options: {},
       _create: function () {
-        const todoComponent = this.element;
-        const form = todoComponent.find('.todo-component__form');
-        this._on(form, {
+        const todoComponentElm = this.element;
+        const formElm = todoComponentElm.find('.todo-component__form');
+        this._on(formElm, {
           submit: 'submitForm',
         });
-        const btnOrganizer = todoComponent.find('.todo-component__list_button');
-        this._on(btnOrganizer, {
+        const btnOrganizerElm = todoComponentElm.find(
+          '.todo-component__list_button'
+        );
+        this._on(btnOrganizerElm, {
           click: 'showAllTasks',
         });
-        const btnOrganizerCompleted = todoComponent.find(
+        const btnOrganizerCompletedElm = todoComponentElm.find(
           '.todo-component__list_button--completed'
         );
-        this._on(btnOrganizerCompleted, {
+        this._on(btnOrganizerCompletedElm, {
           click: 'showCompletedTasks',
         });
-        const btnOrganizerPending = todoComponent.find(
+        const btnOrganizerPendingElm = todoComponentElm.find(
           '.todo-component__list_button--pending'
         );
-        this._on(btnOrganizerPending, {
+        this._on(btnOrganizerPendingElm, {
           click: 'showPendingTasks',
         });
-        const deleteBtn = todoComponent.find('.btn btn--large-warning');
-        this._on(deleteBtn, {
+        const deleteBtnElm = todoComponentElm.find('.btn btn--large-warning');
+        this._on(deleteBtnElm, {
           click: 'deleteRow',
         });
-        const footerBtn = todoComponent.find('.todo-component__footer .btn');
-        this._on(footerBtn, {
+        const footerBtnElm = todoComponentElm.find(
+          '.todo-component__footer .btn'
+        );
+        this._on(footerBtnElm, {
           click: 'clearList',
         });
       },
@@ -61,10 +65,10 @@ $(document).ready(function () {
       },
       createNewTask: function () {
         const todoComponentElm = this.element;
-        const input = todoComponentElm.find('.todo-component__input');
-        let inputValue = input.val().trim();
+        const inputElm = todoComponentElm.find('.todo-component__input');
+        let inputValue = inputElm.val().trim();
         if (inputValue !== '') {
-          inputValue = $(input).val();
+          inputValue = inputElm.val();
           const listElm = $('.todo-component__list');
 
           const rowElm = $('<li/>', {
@@ -110,7 +114,7 @@ $(document).ready(function () {
           rowElm.append(divWrapBtnElm);
           listElm.append(rowElm);
 
-          $(input).val('');
+          inputElm.val('');
 
           todoComponentElm.removeClass('todo-component--showing-completed');
           todoComponentElm.removeClass('todo-component--showing-pending');
