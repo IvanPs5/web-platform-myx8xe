@@ -52,8 +52,7 @@ $(document).ready(function () {
         classes: {
           showingPending: 'todo-component--showing-pending',
           showingCompleted: 'todo-component--showing-completed',
-          listRowPending:
-            'todo-component__list-row todo-component__list-row--pending',
+          listRow: 'todo-component__list-row',
           rowCompleted: 'todo-component__list-row--completed',
           rowPending: 'todo-component__list-row--pending',
           listRowText: 'todo-component__list-row-text',
@@ -69,8 +68,8 @@ $(document).ready(function () {
           list: '.todo-component__list',
           listRow: '.todo-component__list-row',
           listRowCompleted: '.todo-component__list-row--completed',
-          listRowPending: '.todo-component__list-row--pending',
           checkbox: '.todo-component__checkbox',
+          checkboxChecked: '.todo-component__checkbox:checked',
           input: '.todo-component__input',
           defualtBtn: '.btn',
           warningBtn: '.btn.btn--large-warning',
@@ -80,7 +79,7 @@ $(document).ready(function () {
       },
       _create: function () {
         const todoComponentElm = this.element;
-
+        const todoComponentWidget = this;
         const selectors = this.options.selectors;
 
         const formElm = todoComponentElm.find(selectors.form);
@@ -96,14 +95,22 @@ $(document).ready(function () {
 
         const viewButtons = [defaultListBtn, completedListBtn, pendingListBtn];
         widgetListBtn.buttonList({
-          buttons: ['fas fa-list', 'fas fa-bla', 'fas fl'],
+          buttons: viewButtons,
           onButtonSelected: function (buttonIdx) {
             // TODO logic
             console.log(buttonIdx);
+            switch (buttonIdx) {
+              case 0:
+                todoComponentWidget._showAllTasks();
+                break;
+              case 1:
+                todoComponentWidget._showCompletedTasks();
+                break;
+              case 2:
+                todoComponentWidget._showPendingTasks();
+                break;
+            }
           },
-        });
-        this._on(widgetListBtn, {
-          click: '_changeView',
         });
 
         const deleteBtnElm = todoComponentElm.find(selectors.warningBtn);
@@ -116,19 +123,29 @@ $(document).ready(function () {
           click: 'clearList',
         });
       },
+      _showAllTasks: function () {
+        const classes = this.options.classes;
+        const todoComponentElm = this.element;
 
+        todoComponentElm.removeClass(classes.showingCompleted);
+        todoComponentElm.removeClass(classes.showingPending);
+      },
+      _showCompletedTasks: function () {
+        const classes = this.options.classes;
+        const todoComponentElm = this.element;
+
+        todoComponentElm.removeClass(classes.showingPending);
+        todoComponentElm.addClass(classes.showingCompleted);
+      },
+      _showPendingTasks: function () {
+        const classes = this.options.classes;
+        const todoComponentElm = this.element;
+
+        todoComponentElm.removeClass(classes.showingCompleted);
+        todoComponentElm.addClass(classes.showingPending);
+      },
       _submitForm: function (event) {
         event.preventDefault();
-        this._createNewTask();
-        this._updateFooterText();
-      },
-      _changeView: function (event) {
-        const todoComponentElm = this.element;
-        const selectors = this.options.selectors;
-
-        const widgetListBtn = todoComponentElm.find(selectors.listButtons);
-        //console.log(widgetListBtn);
-        // console.log($(':ui-buttonList').buttonList('selectedButtonIdx'));
         this._createNewTask();
         this._updateFooterText();
       },
@@ -150,7 +167,7 @@ $(document).ready(function () {
           const listElm = $(selectors.list);
 
           const rowElm = $('<li/>', {
-            class: classes.listRowPending,
+            class: classes.listRow,
           });
           this._on(rowElm, {
             click: '_activateCheckbox',
@@ -202,14 +219,15 @@ $(document).ready(function () {
         const target = event.target;
         const selectors = this.options.selectors;
         const classes = this.options.classes;
-        let checkbox = $(target).find(selectors.checkbox);
+        const row = $(target).parents(selectors.listRow);
+        let checkbox = row.find(selectors.checkbox);
         let valueChecked = true;
 
         if (checkbox.prop('checked')) {
           valueChecked = false;
         }
         checkbox.prop('checked', valueChecked);
-        const row = checkbox.parents(selectors.listRow);
+        console.log(row);
         if (valueChecked) {
           row.removeClass(classes.rowPending);
           row.addClass(classes.rowCompleted);
@@ -224,6 +242,7 @@ $(document).ready(function () {
         const sizeList =
           this.element.find(selectors.list).children().length -
           this._calculateCheckboxChecked();
+        console.log('checkbox ' + this._calculateCheckboxChecked());
         let footerText = 'You have ' + sizeList + ' pending tasks.';
         if (sizeList === 1) {
           footerText = 'You have ' + sizeList + ' pending task.';
@@ -232,7 +251,7 @@ $(document).ready(function () {
         footerTextElm.text(footerText);
       },
       _calculateCheckboxChecked: function () {
-        return this.element.find(this.options.selectors.list).length;
+        return this.element.find(this.options.selectors.checkboxChecked).length;
       },
       clearList: function () {
         const list = this.element.find(this.options.selectors.list);

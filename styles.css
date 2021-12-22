@@ -169,7 +169,7 @@ Organisms
   font-size: 83%;
 }
 .todo-component.todo-component--showing-completed
-  .todo-component__list-row.todo-component__list-row--pending {
+  .todo-component__list-row:not(.todo-component__list-row--completed) {
   display: none;
 }
 
