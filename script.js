@@ -3,11 +3,13 @@ $(document).ready(function () {
     $.widget('custom.buttonList', {
       options: {
         classes: {
-          showingPending: 'todo-component--showing-pending',
-          showingCompleted: 'todo-component--showing-completed',
+          listButtons: 'todo-component__list-buttons',
+          row: 'todo-component__list-buttons-row',
+          defaultListBtn: 'toolbar-btn',
+          completedListBtn: 'toolbar-btn toolbar-btn--completed',
+          pendingListBtn: 'toolbar-btn toolbar-btn--pending',
         },
         selectors: {
-          todoComponent: '.todo-component',
           defaultListBtn:
             '.toolbar-btn:not(.toolbar-btn--completed):not(.toolbar-btn--pending)',
           completedListBtn: '.toolbar-btn--completed',
@@ -21,15 +23,41 @@ $(document).ready(function () {
         const buttonListElm = this.element;
 
         const selectors = this.options.selectors;
+        const classes = this.options.classes;
         const buttons = this.options.buttons;
 
+        const ulElm = $('<ul/>', {
+          class: classes.listButtons,
+        });
+        ulElm.appendTo(buttonListElm);
+
         for (let btnIdx = 0; btnIdx < buttons.length; btnIdx++) {
+          const liElm = $('<li/>', {
+            class: classes.row,
+          });
+          liElm.appendTo(ulElm);
+          let classButton = classes.defaultListBtn;
+          const iconButton = buttons[btnIdx];
+          if (iconButton === 'fas fa-tasks') {
+            classButton = classes.completedListBtn;
+          }
+          if (iconButton === 'fas fa-list') {
+            classButton = classes.pendingListBtn;
+          }
+          const buttonElm = $('<button/>', {
+            class: classButton,
+          });
           const btnOrganizerElm = buttonListElm.find(buttons[btnIdx]);
-          this._on(btnOrganizerElm, {
+          this._on(buttonElm, {
             click: function () {
               this.onButtonSelected(btnIdx);
             },
           });
+          buttonElm.appendTo(liElm);
+          const iElm = $('<i/>', {
+            class: iconButton,
+          });
+          iElm.appendTo(buttonElm);
         }
       },
       onButtonSelected: function (buttonIdx) {
@@ -64,7 +92,7 @@ $(document).ready(function () {
         },
         selectors: {
           form: '.todo-component__form',
-          listButtons: '.todo-component__list-buttons',
+          listButtons: '.todo-component__buttons-organizers',
           list: '.todo-component__list',
           listRow: '.todo-component__list-row',
           listRowCompleted: '.todo-component__list-row--completed',
@@ -87,10 +115,9 @@ $(document).ready(function () {
           submit: '_submitForm',
         });
 
-        const defaultListBtn =
-          '.toolbar-btn:not(.toolbar-btn--completed):not(.toolbar-btn--pending)';
-        const completedListBtn = '.toolbar-btn--completed';
-        const pendingListBtn = '.toolbar-btn--pending';
+        const defaultListBtn = 'fas fa-th-list';
+        const completedListBtn = 'fas fa-tasks';
+        const pendingListBtn = 'fas fa-list';
         const widgetListBtn = todoComponentElm.find(selectors.listButtons);
 
         const viewButtons = [defaultListBtn, completedListBtn, pendingListBtn];
@@ -98,7 +125,6 @@ $(document).ready(function () {
           buttons: viewButtons,
           onButtonSelected: function (buttonIdx) {
             // TODO logic
-            console.log(buttonIdx);
             switch (buttonIdx) {
               case 0:
                 todoComponentWidget._showAllTasks();
@@ -227,7 +253,6 @@ $(document).ready(function () {
           valueChecked = false;
         }
         checkbox.prop('checked', valueChecked);
-        console.log(row);
         if (valueChecked) {
           row.removeClass(classes.rowPending);
           row.addClass(classes.rowCompleted);
@@ -242,7 +267,6 @@ $(document).ready(function () {
         const sizeList =
           this.element.find(selectors.list).children().length -
           this._calculateCheckboxChecked();
-        console.log('checkbox ' + this._calculateCheckboxChecked());
         let footerText = 'You have ' + sizeList + ' pending tasks.';
         if (sizeList === 1) {
           footerText = 'You have ' + sizeList + ' pending task.';
