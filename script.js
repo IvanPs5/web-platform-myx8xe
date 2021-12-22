@@ -76,7 +76,6 @@ $(document).ready(function () {
           showingCompleted: 'todo-component--showing-completed',
           listRow: 'todo-component__list-row',
           rowCompleted: 'todo-component__list-row--completed',
-          rowPending: 'todo-component__list-row--pending',
           listRowText: 'todo-component__list-row-text',
           warningBtn: 'btn btn--large-warning',
           checkbox: 'todo-component__checkbox',
@@ -248,11 +247,9 @@ $(document).ready(function () {
         }
         checkbox.prop('checked', valueChecked);
         if (valueChecked) {
-          row.removeClass(classes.rowPending);
           row.addClass(classes.rowCompleted);
         } else {
           row.removeClass(classes.rowCompleted);
-          row.addClass(classes.rowPending);
         }
         this._updateFooterText();
       },
