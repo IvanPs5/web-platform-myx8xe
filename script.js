@@ -111,9 +111,10 @@ $(document).ready(function () {
         const defaultListBtn = 'fas fa-th-list';
         const completedListBtn = 'fas fa-tasks';
         const pendingListBtn = 'fas fa-list';
+        const viewButtons = [defaultListBtn, completedListBtn, pendingListBtn];
+
         const widgetListBtn = todoComponentElm.find(selectors.listButtons);
 
-        const viewButtons = [defaultListBtn, completedListBtn, pendingListBtn];
         widgetListBtn.buttonList({
           buttons: viewButtons,
           onButtonSelected: function (buttonIdx) {
