@@ -180,13 +180,13 @@ Organisms
   padding: 2px 1px;
 }
 
-.todo-component .todo-component__list-buttons {
+.list-buttons {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
 
-.todo-component .todo-component__list-buttons-row {
+.list-buttons .list-buttons-row {
   float: left;
   padding-right: 12px;
 }

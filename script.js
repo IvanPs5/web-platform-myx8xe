@@ -3,8 +3,8 @@ $(document).ready(function () {
     $.widget('custom.buttonList', {
       options: {
         classes: {
-          listButtons: 'todo-component__list-buttons',
-          row: 'todo-component__list-buttons-row',
+          listButtons: 'list-buttons',
+          row: 'list-buttons-row',
           defaultListBtn: 'toolbar-btn',
           listBtnSelected: 'toolbar-btn--selected',
         },
