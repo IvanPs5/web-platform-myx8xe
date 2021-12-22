@@ -52,21 +52,16 @@ Atoms
   padding: 1px;
   border-width: 1px;
   border-style: solid;
-  border-color: #000;
+  border-color: #fff;
   cursor: hand;
   font-size: 15px;
   color: #000;
+  background-color: #fff;
+}
+
+.toolbar-btn.toolbar-btn--selected {
+  border-color: #000;
   background-color: gray;
-}
-
-.toolbar-btn.toolbar-btn--completed {
-  border-color: #fff;
-  background-color: #fff;
-}
-
-.toolbar-btn.toolbar-btn--pending {
-  border-color: #fff;
-  background-color: #fff;
 }
 
 /*
@@ -194,25 +189,6 @@ Organisms
 .todo-component .todo-component__list-buttons-row {
   float: left;
   padding-right: 12px;
-}
-
-.todo-component.todo-component--showing-completed .toolbar-btn {
-  border-color: #fff;
-  background-color: #fff;
-}
-.todo-component.todo-component--showing-pending .toolbar-btn {
-  border-color: #fff;
-  background-color: #fff;
-}
-.todo-component.todo-component.todo-component--showing-completed
-  .toolbar-btn.toolbar-btn--completed {
-  border-color: #000;
-  background-color: gray;
-}
-.todo-component.todo-component.todo-component--showing-pending
-  .toolbar-btn.toolbar-btn--pending {
-  border-color: #000;
-  background-color: gray;
 }
 
 /*

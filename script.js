@@ -6,14 +6,10 @@ $(document).ready(function () {
           listButtons: 'todo-component__list-buttons',
           row: 'todo-component__list-buttons-row',
           defaultListBtn: 'toolbar-btn',
-          completedListBtn: 'toolbar-btn toolbar-btn--completed',
-          pendingListBtn: 'toolbar-btn toolbar-btn--pending',
+          listBtnSelected: 'toolbar-btn--selected',
         },
         selectors: {
-          defaultListBtn:
-            '.toolbar-btn:not(.toolbar-btn--completed):not(.toolbar-btn--pending)',
-          completedListBtn: '.toolbar-btn--completed',
-          pendingListBtn: '.toolbar-btn--pending',
+          defaultListBtn: '.toolbar-btn',
         },
         buttons: [],
         onButtonSelected: function (buttonIdx) {},
@@ -38,18 +34,16 @@ $(document).ready(function () {
           liElm.appendTo(ulElm);
           let classButton = classes.defaultListBtn;
           const iconButton = buttons[btnIdx];
-          if (iconButton === 'fas fa-tasks') {
-            classButton = classes.completedListBtn;
-          }
-          if (iconButton === 'fas fa-list') {
-            classButton = classes.pendingListBtn;
+          if (btnIdx === 0) {
+            classButton = classButton + ' ' + classes.listBtnSelected;
           }
           const buttonElm = $('<button/>', {
             class: classButton,
           });
-          const btnOrganizerElm = buttonListElm.find(buttons[btnIdx]);
           this._on(buttonElm, {
             click: function () {
+              $(selectors.defaultListBtn).removeClass(classes.listBtnSelected);
+              buttonElm.addClass(classes.listBtnSelected);
               this.onButtonSelected(btnIdx);
             },
           });
