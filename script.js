@@ -81,6 +81,8 @@ $(document).ready(function () {
           checkbox: 'todo-component__checkbox',
           label: 'todo-component__label',
           wrapBtn: 'todo-component__wrap-btn',
+          defaultListBtn: 'toolbar-btn',
+          listBtnSelected: 'toolbar-btn--selected',
           iconBtnTrash: 'fas fa-trash',
         },
         selectors: {
